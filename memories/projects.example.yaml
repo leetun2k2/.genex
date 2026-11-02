@@ -1,0 +1,7 @@
+# Template only. Copy to projects.yaml and replace with confirmed mappings.
+remote_aliases: {}
+projects:
+  example-project:
+    repositories:
+      - github.com/example/service-api
+      - github.com/example/service-worker

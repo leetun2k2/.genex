@@ -10,4 +10,17 @@
 skills/.system/
 __pycache__/
 !memories/
-!memories/**
+!GEMINI.md
+
+# Memory data stays local; allow only the documented example files.
+!memories/**/
+!memories/INDEX.example.md
+!memories/projects.example.yaml
+!memories/knowledge/global/INDEX.example.md
+!memories/knowledge/projects/example-project/INDEX.example.md
+!memories/knowledge/projects/example-project/architecture.example.md
+!memories/knowledge/projects/example-project/environments.example.md
+!memories/knowledge/projects/example-project/integrations.example.md
+!memories/knowledge/projects/example-project/decisions/event-transport.example.md
+!memories/knowledge/projects/example-project/learnings/connection-pool.example.md
+!memories/working/example-project/resume-task.example.md

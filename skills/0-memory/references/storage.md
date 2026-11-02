@@ -15,12 +15,19 @@ memories/
 │       ├── architecture.md
 │       ├── environments.md
 │       ├── integrations.md
+│       ├── team.md
+│       ├── dispatch.md
+│       ├── references.md
 │       ├── decisions/<descriptive-topic>.md
 │       └── learnings/<descriptive-finding>.md
-└── working/<project-id>/<task-id>.md
+└── working/<project-id>/
+    ├── <task-id>.md
+    ├── spec-queue.md
+    ├── requests-inbox.md
+    └── release-calendar.md
 ```
 
-This is a convention, not a required schema. Keep directories shallow; additional project-specific topic documents are fine. Indexes are optional navigation, never mandatory payloads.
+This is a convention, not a required rigid schema. Keep directories shallow; additional project-specific topic documents are fine. Indexes are optional navigation, never mandatory payloads.
 
 ## Repository identity
 
@@ -39,41 +46,52 @@ projects:
       - github.com/example/service-worker
 ```
 
-## Minimal knowledge example
+## Metadata and lifecycle
 
-Illustrative template only; replace placeholders with actual evidence before saving. Omit unsupported metadata. `updated_at` is the actual write date; `verified_at` is the actual verification date, never an inferred value.
+Templates are illustrative, not evidence. Replace placeholders before saving real data. Use `type: fact` for environment/team facts and `type: reference` for locations; filenames identify the topic. Decisions and learnings use their corresponding types. Add fields only when they help retrieval or verification.
 
-```markdown
----
-id: descriptive-decision
-project: example-project
-type: decision
-status: provisional
-source: path/to/authoritative-decision.md
----
-# Descriptive decision
+For mutable facts (team membership, hosts, routing, document locations), record a source pointer or attributed requester/message and the actual `updated_at`. For `verified` facts also record `verified_at` and what source/check established the claim. Dates must reflect actual writes/checks, never template dates. Unknown sources or unconfirmed claims remain `provisional`; do not fabricate evidence. Mixed-status facts in one document need per-entry attribution/status rather than a blanket `verified` label.
 
-## Summary
-Concise accepted decision and relevant conditions, once confirmed.
+Verify important or changeable facts against current sources before acting on them. A timestamp alone does not prove validity. If verification is unavailable, retain the uncertainty. Mark contradicted or suspect facts `stale`, with reason and conflicting source. Use `superseded` with `superseded_by` only for a known replacement; retain decision context, acceptance evidence, rationale, and relevant conditions. Archive completed material only when useful and safe; preserve unresolved requests, pending replies, and references. An inbox item with completed work and a pending response remains outstanding for follow-up.
 
-## Evidence
-Source location, acceptance evidence, rationale, and verification limits.
-```
+## Dual-axis status convention
 
-Types: `fact`, `decision`, `learning`, `reference`. States: `verified`, `provisional`, `stale`, `superseded`. Use minimal consistent YAML frontmatter when useful; tags and dates are optional. Project is omitted for global records. Important claims need traceable sources when available. For learnings include conditions, verified cause, and confirmed resolution where applicable. Avoid generic filenames such as `notes.md` or `misc.md`.
+- `evidence_status` describes reliability: `verified`, `provisional`, `stale`, or `superseded`.
+- `task_status` describes operational progress: `backlog`, `in_progress`, `review` (awaiting a relevant check), or `done` (the record's outcome is complete). Use `blocked` or `cancelled` when needed, with a reason.
 
-Checkpoint example (illustrative, ignored working data):
+Do not require both fields on every record. A queue entry may still need attribution or evidence for its factual claims. Legacy knowledge `status` values matching the evidence states mean `evidence_status`; rename on the next relevant edit. If both fields conflict, reconcile using sources. Do not bulk-migrate unrelated records or interpret legacy evidence status as delivery progress.
 
-```markdown
-# Resume descriptive-task
-Project/repository: <resolved identity>
-Goal: <requested outcome>
-Status/progress: <verified work>
-Files/artifacts: <paths>
-Checks: <executed checks and results>
-Blockers/remaining work: <current observations>
-Next steps: <concise actions>
-```
+Completion depends on record type:
+
+| Record | Meaning of done | Useful evidence |
+|---|---|---|
+| Implementation/spec queue | Intended implementation and required checks completed; drafting a spec alone is insufficient | Spec/issue link, relevant artifacts and verification |
+| Ad-hoc request | Requested analysis/work completed | Result link; track `response_status` separately as `pending` or `sent`, with response reference/date when sent |
+| Release calendar | Recorded release scope completed in the target environment | Release/deployment record and outcome |
+| Checkpoint | Requested task outcome completed | Artifacts and actual check results |
+
+For specs drafted ahead of implementation, record readiness/approval in the linked spec or a concise note; keep implementation in `backlog` until started. Jira-managed work stays linked to Jira rather than becoming a second independent status queue.
+
+Release entries distinguish requested dates from confirmed commitments. Record scope, environment, absolute date with numeric timezone, requester/source, and who confirmed a commitment with its source/date. Resolve ambiguous dates such as “Monday” from the original request's date/timezone; ask if unclear. A note is not a scheduled reminder or execution authorization.
+
+## Topic templates
+
+Copy only a relevant template; do not create empty files for every topic. These linked files are the maintained examples, excluded from normal knowledge retrieval:
+
+| Topic | Template |
+|---|---|
+| Team roster | [team](../../../memories/knowledge/projects/example-project/team.example.md) |
+| Environments and services | [environments](../../../memories/knowledge/projects/example-project/environments.example.md) |
+| Jira and team routing | [dispatch](../../../memories/knowledge/projects/example-project/dispatch.example.md) |
+| Postman and API documentation | [references](../../../memories/knowledge/projects/example-project/references.example.md) |
+| Accepted decisions and rationale | [decision](../../../memories/knowledge/projects/example-project/decisions/event-transport.example.md) |
+| Debug/tracing findings | [learning](../../../memories/knowledge/projects/example-project/learnings/connection-pool.example.md) |
+| Deferred implementation | [spec queue](../../../memories/working/example-project/spec-queue.example.md) |
+| Small requests and replies | [requests inbox](../../../memories/working/example-project/requests-inbox.example.md) |
+| Release targets and commitments | [release calendar](../../../memories/working/example-project/release-calendar.example.md) |
+| Cross-harness recovery | [checkpoint](../../../memories/working/example-project/resume-task.example.md) |
+
+Checkpoints also support non-Git and multi-repository tasks: identify actual artifact/repository locations, omit unavailable Git metadata, and state verification limits. Save observations and authored technical artifacts, not hidden reasoning or transcripts. Keep specifications in their established repository/Confluence location when one exists and link them from memory.
 
 ## Concurrent writes
 
@@ -85,4 +103,11 @@ All cooperating harnesses must follow this protocol for Markdown and YAML, inclu
 4. Validate the proposed YAML/frontmatter with an available parser, ensure Markdown fences/sections remain intact, and review the diff. If no parser exists, use simple metadata and inspect it explicitly; never claim parser validation. Write a unique temporary file in the target's directory, flush/close it, then use an atomic rename/replace (e.g. `os.replace` or same-filesystem `mv`). Preserve appropriate file permissions. Recheck the target immediately before replacement to detect non-cooperating edits where feasible.
 5. Verify the resulting file, clean up only your own temp file, and release your lock in a finally/trap path. Update navigation under the same lock when needed. Each file replacement is atomic, not a transaction across multiple files; write knowledge before optional indexes, and report partial completion.
 
-Lock scope covers knowledge, working state, and projects.yaml. The lock directory and its contents are ignored by Git. Atomic rename prevents partial-file reads; the lock and snapshot check prevent cooperating writers from losing updates. Uncooperative editors can still race between check and replace; report this limit. If available tools cannot support locking/atomic replacement, defer the write and report why rather than use a blind overwrite. The protocol is tool-neutral and does not scan or redact secrets automatically; the agent must review content before persistence.
+Resolve all local harnesses to the same canonical memory root, including when code worktrees differ. Lock scope covers knowledge, working state, and projects.yaml on that filesystem. The lock directory and its contents are ignored by Git. Atomic rename prevents partial-file reads; the lock and snapshot check prevent cooperating writers on the same host from losing updates.
+
+Non-cooperating editors can still race between the snapshot check and replacement; this is not guaranteed compare-and-swap. If tools cannot support locking and atomic replacement, defer the write and report the limitation rather than blindly overwriting.
+
+### Multi-worktree and remote boundaries
+- **Local filesystem only:** The `.memory-write-lock` is filesystem-local. It does not synchronize processes across different machines or isolated Git worktrees with detached storage.
+- **Git synchronization:** Real memory is ignored by this repository; these instructions do not enable sync. If a separately authorized restricted store syncs memory via Git, agents must rely on standard Git branch/merge protocols and detect merge conflicts rather than assuming local locking provides global concurrency.
+- **Sensitivity boundary:** Environment inventories and Vault path mappings should remain local or restricted. Never commit internal server topologies, infrastructure host/port mappings, or private Vault paths into public or widely-shared repositories.

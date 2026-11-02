@@ -2,7 +2,9 @@
 id: example-connection-pool
 project: example-project
 type: learning
-status: provisional
+evidence_status: provisional
+source: "<source or attributed request>"
+updated_at: "<actual write timestamp>"
 ---
 # Connection pool learning template
 

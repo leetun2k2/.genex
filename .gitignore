@@ -21,6 +21,12 @@ __pycache__/
 !memories/knowledge/projects/example-project/architecture.example.md
 !memories/knowledge/projects/example-project/environments.example.md
 !memories/knowledge/projects/example-project/integrations.example.md
+!memories/knowledge/projects/example-project/team.example.md
+!memories/knowledge/projects/example-project/dispatch.example.md
+!memories/knowledge/projects/example-project/references.example.md
 !memories/knowledge/projects/example-project/decisions/event-transport.example.md
 !memories/knowledge/projects/example-project/learnings/connection-pool.example.md
 !memories/working/example-project/resume-task.example.md
+!memories/working/example-project/spec-queue.example.md
+!memories/working/example-project/requests-inbox.example.md
+!memories/working/example-project/release-calendar.example.md

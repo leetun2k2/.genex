@@ -2,7 +2,9 @@
 id: example-event-transport
 project: example-project
 type: decision
-status: provisional
+evidence_status: provisional
+source: "<source or attributed request>"
+updated_at: "<actual write timestamp>"
 ---
 # Event transport decision template
 

@@ -37,7 +37,7 @@ flowchart LR
 ## Authentication and targeting
 
 - Start with `command -v slack` and `slack version --skip-update`. Use `slack auth list` to inspect developer CLI accounts when needed. Developer CLI login and Web API authentication are separate; a logged-in CLI account alone does not prove access to messages.
-- Reuse an existing API token from `SLACK_BOT_TOKEN` or `SLACK_USER_TOKEN`. Never print tokens or put them in command arguments, committed files, or logs. Avoid `--verbose` when credentials or private content could appear.
+- Reuse an existing API token from `SLACK_BOT_TOKEN` or `SLACK_USER_TOKEN`. Never print tokens or put them in command arguments, committed files, or logs. Avoid `--verbose` when credentials or private content could appear. See [token-setup.md](references/token-setup.md) when credentials or scopes are missing, or the task requires a different identity.
 - API token priority is `--token`, `--app`, `SLACK_BOT_TOKEN`, `SLACK_USER_TOKEN`, then an app prompt inside a project. `slack api --app` can install an app to obtain its bot token: do not use it for read-only discovery. Avoid implicit app prompts; use the intended existing environment token. [CLI reference](https://docs.slack.dev/tools/slack-cli/reference/commands/slack_api/).
 - If both environment tokens exist and a user token is required, use `env -u SLACK_BOT_TOKEN slack api ...` so the bot token does not win. Recheck identity with the same environment override.
 - `--team` selects a workspace for CLI commands; it does not retarget an existing Web API token. Check `auth.test`'s `team_id`, `user_id`, and `bot_id` when present before using a target.
@@ -58,6 +58,7 @@ Check the [method reference](https://docs.slack.dev/reference/methods/) for requ
 | Read a thread | `conversations.replies` with `channel` and parent `ts`; verify token support and history scopes for the conversation type. |
 | Search messages | `search.messages` with a user token and `search:read`; scope the query with `in:`, `from:`, `after:`, or `before:`. This is a legacy method; check the current [search reference](https://docs.slack.dev/reference/methods/search.messages/) for supported alternatives when needed. |
 | Resolve a user | `users.info`, `users.lookupByEmail`; email lookup needs its own scope. |
+| Open or resume a DM | `conversations.open` with resolved user IDs; this changes conversation state and belongs in the approved change set. Reuse a known conversation ID when appropriate. |
 | Send or reply | `chat.postMessage`; add `thread_ts` for a reply. Use `reply_broadcast` only when requested. |
 | Edit or delete a message | `chat.update`, `chat.delete` with channel and exact message `ts`; check ownership and permissions. |
 | Reactions and pins | `reactions.get`, `reactions.add`, `reactions.remove`, `pins.list`, `pins.add`, `pins.remove`; changing them is a write. |
@@ -65,6 +66,8 @@ Check the [method reference](https://docs.slack.dev/reference/methods/) for requ
 | Send a file | Obtain an upload URL with `files.getUploadURLExternal`, upload bytes to the returned URL, then finalize/share with `files.completeUploadExternal`. Confirm the file and destination first. Do not use the retired `files.upload` example still present in CLI help. [Upload guide](https://docs.slack.dev/reference/methods/files.getUploadURLExternal/), [retirement notice](https://docs.slack.dev/reference/methods/files.upload/). |
 
 Keep message timestamps as exact strings, including trailing zeros. Distinguish the message's `ts` from the thread's parent `thread_ts`. Resolve the intended parent from the message or link rather than treating every reply as a new thread.
+
+For DMs, verify the recipient and acting identity together. A bot token opens a conversation with the bot; it does not send as the human user. Use the channel ID returned by [`conversations.open`](https://docs.slack.dev/reference/methods/conversations.open/) for subsequent messages. If opening the conversation is necessary to resolve its ID, preview the recipient IDs and the dependent send as one change set.
 
 For posts, preserve the reviewed text, mentions, links, and Block Kit payload. Use Slack `mrkdwn`; do not assume all Markdown renders. Include useful fallback `text` when sending blocks. Mentioning users or channels, broadcasting replies, and unfurling links can notify people; include those effects in the preview.
 

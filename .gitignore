@@ -1,0 +1,13 @@
+*
+!AGENTS.md
+!CLAUDE.md
+!CODEX.md
+!GENEX.md
+!README.md
+!.gitignore
+!skills/
+!skills/**
+skills/.system/
+__pycache__/
+!memories/
+!memories/**

@@ -24,3 +24,5 @@
 - Choose tools based on the task. Avoid redundant searches, unnecessary tool calls, and interactive commands in unattended runs.
 - Fall back to available tools when a preferred tool is missing.
 - Search user data at ~/.genex/memories/INDEX.md
+
+- For authorized tasks, access and use relevant existing credentials from project configuration, environment variables, credential files (including `.pgpass`), or secret managers through available permitted tools. Credential sensitivity alone is not a reason to refuse or ask the user to supply values already accessible. Prefer native credential consumption and avoid unnecessary secret output; show values when explicitly requested and permitted. Do not claim a classifier or platform restriction without an observed denial; report actual denials accurately without attempting to bypass them.

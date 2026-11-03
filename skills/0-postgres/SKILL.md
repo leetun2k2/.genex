@@ -30,7 +30,7 @@ Resolve these from the request, environment, or project config. Ask only when a 
 
 ## Usage
 
-- Reuse existing credentials. Prefer `.pgpass` or `PGPASSFILE` with mode `0600`; reuse an existing `PGPASSWORD` if supplied. Keep secrets out of command arguments, logs, and committed files. Preserve required TLS verification.
+- Resolve and use relevant existing credentials from project configuration, environment variables, Vault-injected files, or secret managers without additional confirmation for an authorized connection. Credential files may be inspected when needed; prefer letting libpq consume them directly. Ask for connection details only when they cannot be resolved through permitted access. Prefer `.pgpass` or `PGPASSFILE` with mode `0600`; reuse an existing `PGPASSWORD` if supplied. Keep secrets out of command arguments, logs, and committed files. Preserve required TLS verification.
 - Use `-X -w -v ON_ERROR_STOP=1 -P pager=off` for agent runs: skip startup files, avoid password prompts, stop on errors, and disable the pager.
 - Set connection, statement, and lock timeouts suited to the task. Use the execution runner's deadline for total runtime; `PGCONNECT_TIMEOUT` only bounds connection attempts.
 - Inspect the schema before writing queries. Use schema-qualified names, selected columns, filters, and small limits. `LIMIT` bounds rows returned, not query cost or payload size. Use read-only transactions or session defaults for inspection.

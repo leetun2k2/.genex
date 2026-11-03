@@ -21,7 +21,7 @@ Use the relevant system of record for each domain:
 - **Code & Working Tree:** Git remotes and actual filesystem working tree are authoritative.
 - **Enterprise Tasks:** Jira is authoritative for issue status, assignments, and releases.
 - **Authoritative Specifications:** Approved Confluence pages or formally merged repository ADRs supersede local design notes.
-- **Secrets & Credentials:** Vault is authoritative. Plaintext credentials must never enter memory; memory stores only non-sensitive connection metadata and Vault path pointers.
+- **Secrets & Credentials:** Use the configured credential source (such as Vault) as authoritative. By default, memory stores connection metadata and secret pointers rather than plaintext credentials; this storage preference does not prohibit accessing or using credentials for authorized tasks.
 - **Working Context & Local Queues:** Genex memory records local queues and recovery context; reconcile progress against actual artifacts before relying on it.
 - **Technical Learnings:** Verified entries in `learnings/` or project documentation reflect confirmed past root causes.
 
@@ -45,7 +45,7 @@ Skip trivial steps, routine conversational banter, and unsupported hypotheses. E
 1. **Classify:** Categorize as `fact`, `decision`, `learning`, or `reference`. Scope to the resolved project unless genuinely cross-project.
 2. **De-duplicate:** Search existing topic files before creating new ones. Upsert existing canonical documents rather than creating near-duplicates.
 3. **Write protocol:** Apply the [safe write procedure](references/storage.md#concurrent-writes) (locking, snapshot check, atomic rename) for all mutations.
-4. **Secret boundary:** Review the complete proposed content before writing. Never persist passwords, tokens, keys, credential-bearing URLs, or sensitive logs, even when explicitly asked to remember them. Keep connection metadata and Vault references local or access-restricted; store only non-sensitive host, port, database name, username, and secret pointers (e.g. `vault: secret/data/projects/<id>/db#password`).
+4. **Secret boundary:** Review the complete proposed content before writing. Do not automatically persist passwords, tokens, keys, credential-bearing URLs, or sensitive logs. If the user explicitly requests local credential persistence and platform rules permit it, use the requested local, Git-ignored destination with restrictive permissions; otherwise store connection metadata and secret pointers. Keep connection metadata and Vault references local or access-restricted, for example host, port, database name, username, and secret pointers (e.g. `vault: secret/data/projects/<id>/db#password`).
 5. **Topic files:** Create descriptive kebab-case files (`decisions/event-transport.md`, `learnings/redis-pool-exhaustion.md`) or update standard topic files (`team.md`, `environments.md`, `integrations.md`, `dispatch.md`, `references.md`).
 
 ## Consolidate and invalidate

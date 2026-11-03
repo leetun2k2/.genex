@@ -3,6 +3,11 @@ name: 0-chrome
 description: Use this skill to write shell scripts or run shell commands to automate tasks in the browser or otherwise use Chrome DevTools via CLI.
 ---
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 The `chrome-devtools-mcp` CLI lets you interact with the browser from your terminal.
 
 ## AI Workflow

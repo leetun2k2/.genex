@@ -5,6 +5,11 @@ description: Use the Slack CLI (slack) to search and read messages, inspect chan
 
 # Slack
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed public Slack CLI. Command syntax was checked against `v4.12.0`. Check the relevant leaf command with `--help` when flags differ or a command has not been checked in the current session. Use `slack api` for workspace interactions; the other command groups mainly manage apps.
 
 ## Read and write policy

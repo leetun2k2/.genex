@@ -5,6 +5,11 @@ description: Use gopls to navigate Go symbols, trace references and call relatio
 
 # Go Language Tools
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed `gopls`. Choose commands based on the user's goal; check `gopls help <command>` for current syntax. Use an explicit subcommand: bare `gopls` starts a language server.
 
 ## Read and write policy

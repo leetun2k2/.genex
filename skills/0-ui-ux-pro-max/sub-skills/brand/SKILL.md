@@ -9,6 +9,11 @@ metadata:
 
 # Brand
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Brand identity, voice, messaging, asset management, and consistency frameworks.
 
 ## When to Use

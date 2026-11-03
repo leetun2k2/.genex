@@ -10,6 +10,11 @@ metadata:
 
 # Banner Design - Multi-Format Creative Banner System
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Design banners across social, ads, web, and print formats. Generates multiple art direction options per request with AI-powered visual elements. This skill handles banner design only. Does NOT handle video editing, full website design, or print production.
 
 ## When to Activate

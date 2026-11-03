@@ -5,6 +5,11 @@ description: Run a short, read-only design debate between two or three CLI agent
 
 # Debate
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Run a bounded design review between CLI harnesses. The aim is to find material design faults and reach the execution boundary with the least process needed.
 
 The moderator invokes the harnesses, keeps a lossless decision ledger, and writes the final review brief. The moderator and harnesses are read-only. They do not edit code or specs.

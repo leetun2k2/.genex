@@ -10,6 +10,11 @@ metadata:
 
 # Design
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Unified design skill: brand, tokens, UI, logo, CIP, slides, banners, social photos, icons.
 
 ## When to Use

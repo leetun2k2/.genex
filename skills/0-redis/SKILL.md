@@ -5,6 +5,11 @@ description: Connect to Redis with redis-cli and query keys, TTLs, and server st
 
 # Redis
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed `redis-cli`. Choose commands based on the user's question; use `redis-cli --help` when needed.
 
 ## Read and write policy

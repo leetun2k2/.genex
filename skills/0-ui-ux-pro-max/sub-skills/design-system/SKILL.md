@@ -10,6 +10,11 @@ metadata:
 
 # Design System
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Token architecture, component specifications, systematic design, slide generation.
 
 ## When to Use

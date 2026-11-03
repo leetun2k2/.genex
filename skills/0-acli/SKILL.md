@@ -5,6 +5,11 @@ description: Use Atlassian CLI (acli) to inspect and manage Jira work items, pro
 
 # Atlassian CLI
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed `acli`. Guidance was checked against local `--help` in `1.3.39-stable`. Recheck the relevant leaf command when flags or capabilities differ. Choose only commands needed for the user's goal.
 
 ## Read and write policy

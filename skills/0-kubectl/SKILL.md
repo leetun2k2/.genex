@@ -5,6 +5,11 @@ description: Use kubectl to inspect Kubernetes workloads, logs, events, networki
 
 # Kubernetes
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed `kubectl`. Choose commands based on the user's goal; use `kubectl <command> --help` and `kubectl explain` when needed.
 
 ## Read and write policy

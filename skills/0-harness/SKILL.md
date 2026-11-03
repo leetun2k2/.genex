@@ -5,6 +5,11 @@ description: Provide reusable command patterns for invoking Claude Code, Codex, 
 
 # Non-interactive harnesses
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 This skill owns only the mechanics for running one CLI harness without a TTY. The calling workflow owns the task, prompt semantics, concurrency, retries, and stop conditions.
 
 ```mermaid

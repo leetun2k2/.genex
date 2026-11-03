@@ -5,6 +5,11 @@ description: Connect to PostgreSQL with psql and inspect schemas, data, query pl
 
 # PostgreSQL
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed `psql`. Choose commands based on the user's question; use `psql --help` or `psql --help=commands` when needed.
 
 ## Read and write policy

@@ -5,6 +5,11 @@ description: Use Hurl to run HTTP requests, write or debug .hurl files, assert r
 
 # Hurl
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed `hurl`. Check `hurl --version` and `hurl --help` when flags or protocol support matter. Reuse existing `.hurl` files and project conventions.
 
 ```mermaid

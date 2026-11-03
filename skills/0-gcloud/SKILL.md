@@ -5,6 +5,11 @@ description: Use gcloud to inspect Google Cloud resources, read logs, debug serv
 
 # Google Cloud
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed `gcloud`. Choose commands based on the user's goal; use `gcloud <group> <command> --help` when needed. Prefer stable commands unless the task needs a beta or alpha feature.
 
 ## Read and write policy

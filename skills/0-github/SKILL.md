@@ -5,6 +5,11 @@ description: Use gh to inspect and manage GitHub repositories, pull requests, is
 
 # GitHub
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Use the installed `gh`. Choose commands based on the user's goal; use `gh <command> <subcommand> --help` when needed. Use `git` for local history, branches, and working-tree changes.
 
 ## Read and write policy

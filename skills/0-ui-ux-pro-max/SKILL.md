@@ -4,6 +4,11 @@ description: "UI/UX design intelligence. 67 styles, 161 palettes, 57 font pairin
 ---
 # UI/UX Pro Max - Design Intelligence
 
+## Installation
+
+If a required CLI or runtime is missing, read [installation and verification](references/installation.md).
+
+
 Comprehensive design guide for web, mobile, and desktop applications. Contains 67 styles, 161 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart types across 22 technology stacks. Searchable database with priority-based recommendations.
 
 ## When to Apply
@@ -305,30 +310,7 @@ Search specific domains using the CLI tool below.
 ---
 # Prerequisites
 
-Check if Python is installed:
-
-```bash
-python3 --version || python --version
-```
-
-If Python is not installed, install it based on user's OS:
-
-**macOS:**
-```bash
-brew install python3
-```
-
-**Ubuntu/Debian:**
-```bash
-sudo apt update && sudo apt install python3
-```
-
-**Windows:**
-```powershell
-winget install Python.Python.3.12
-```
-
-> **Note:** On Windows, use `python` instead of `python3` to run scripts (e.g., `python scripts/search.py` instead of `python3 scripts/search.py`).
+Python 3 is required for the bundled search CLI. See [runtime installation](references/installation.md).
 
 ---
 

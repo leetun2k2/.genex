@@ -8,6 +8,8 @@
 !skills/
 !skills/**
 skills/.system/
+skills/.trash/
+synced/
 __pycache__/
 !memories/
 !GEMINI.md

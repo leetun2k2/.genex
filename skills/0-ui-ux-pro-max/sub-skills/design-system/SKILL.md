@@ -247,3 +247,7 @@ assets/designs/slides/claudekit-pitch-251223.html
 4. Use HSL format for opacity control
 5. Document every token's purpose
 6. **Slides must import design-tokens.css and use var() exclusively**
+
+## Saved deliverable
+
+Save requested canonical component specifications and token designs as workspace files before completion; generated token files remain in their established project locations. Follow the shared artifact location precedence and update the intended existing artifact on revisions. Verify the saved files and return their actual paths; report failed persistence as incomplete. Saving a draft does not approve it. Exploratory advice may remain in chat.

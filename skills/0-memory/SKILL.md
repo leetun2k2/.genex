@@ -48,6 +48,12 @@ Skip trivial steps, routine conversational banter, and unsupported hypotheses. E
 4. **Secret boundary:** Review the complete proposed content before writing. Do not automatically persist passwords, tokens, keys, credential-bearing URLs, or sensitive logs. If the user explicitly requests local credential persistence and platform rules permit it, use the requested local, Git-ignored destination with restrictive permissions; otherwise store connection metadata and secret pointers. Keep connection metadata and Vault references local or access-restricted, for example host, port, database name, username, and secret pointers (e.g. `vault: secret/data/projects/<id>/db#password`).
 5. **Topic files:** Create descriptive kebab-case files (`decisions/event-transport.md`, `learnings/redis-pool-exhaustion.md`) or update standard topic files (`team.md`, `environments.md`, `integrations.md`, `dispatch.md`, `references.md`).
 
+## Artifact references
+
+The producer owns saving its deliverable; memory indexing is separate and selective. For important artifacts needed in future sessions, upsert a project-scoped `references.md` entry with the canonical path/URI, purpose, and relevant decisions or review status when useful. Use existing metadata and write procedures; do not duplicate full documents already stored in repositories or authoritative systems. Verify the target before describing it as saved, and recheck freshness when retrieving it. Evidence verification and content approval are distinct.
+
+When repository/workspace storage is unavailable, a complete artifact may live in the resolved project's knowledge directory under the existing storage conventions. Disclose this fallback and its local-only durability; do not silently bypass an explicitly required output location. Checkpoints link complete artifacts and preserve unfinished work, rather than replacing the deliverable. See [artifact storage](references/storage.md#artifact-storage-and-references).
+
 ## Consolidate and invalidate
 
 - **Evidence status:** `verified` (past confirmation), `provisional` (unverified with provenance), `stale` (contradicted by current evidence), or `superseded` (obsolete, linking `superseded_by`).

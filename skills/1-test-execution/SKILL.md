@@ -245,7 +245,7 @@ Mention only material:
 
 Save the execution report separately from the canonical test specification.
 
-Follow repository conventions for output location.
+Follow the shared artifact location precedence and update the intended existing report on revisions. Verify the saved report and return its actual path; report failed persistence accurately. Saving results does not imply acceptance or approval.
 
 ## Boundaries
 

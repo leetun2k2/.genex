@@ -36,3 +36,10 @@
 
 ## Continuity
 - Before compaction or handoff, preserve essential task context: goals, constraints, decisions, modified files, verification results, blockers, and next steps.
+
+## Artifact Persistence
+- Save canonical specifications, designs, contracts, and implementation/test plans as workspace files before considering the deliverable complete. Save reviews and reports when useful for approval, handoff, audit, follow-up, or long-term reference; quick explanations and trivial observations may remain in chat.
+- Resolve locations in order: explicit user path, existing artifact when revising, repository conventions, then an appropriate workspace documentation directory. Update canonical documents rather than creating unnecessary versions.
+- The producer owns saving its deliverable independently of any orchestrator. Verify the saved file and return its actual path; report failed writes and incomplete persistence accurately.
+- Saving a draft, approving content, committing to Git, and indexing memory are separate actions. Preserve review status; do not automatically commit without authorization.
+- At meaningful completion, use `0-memory` when valuable to retain reusable knowledge or artifact references. Link existing documents rather than duplicating them; checkpoints do not replace complete artifacts.

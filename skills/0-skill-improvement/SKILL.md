@@ -4,8 +4,8 @@ description: >
   Review feedback on individual or combined global skills, global
   rules, harness instructions, and skill orchestration. Diagnose
   root causes and propose minimal, evidence-based improvements.
-  Require explicit user approval of proposed changes before any
-  persistent mutation.
+  Require explicit user approval before modifying effective skills,
+  rules, or harness configuration; review proposals may be saved before approval.
 ---
 
 # Skill Improvement
@@ -210,13 +210,9 @@ Identify the actual ownership layer even when no label names it directly;
 use UPDATE_MULTIPLE for changes spanning layers.
 
 ### Approval
-Explicitly request approval before editing.
+Save a clearly identified Markdown review proposal when proposing changes requiring approval. Follow the shared artifact location precedence, update the intended existing proposal on revisions, verify the saved file, and return its actual path. If saving fails, report it as unsaved. Mark proposed changes as awaiting approval unless approval has actually been given; saving is not approval.
 
-If changes are proposed, stop here.
-
-Do not mutate any global skill, global rule, harness instruction,
-symlink, or other persistent file during review. This gate applies to
-supporting artifacts as well as the proposed targets.
+Before modifying effective skills, rules, harness instructions/configuration, or their symlinks, obtain explicit approval of the proposed scope. Do not request approval again when the current conversation already authorizes that scope. Without approval, stop after saving and presenting the proposal and requesting approval. Proposal files and useful memory references may be saved without applying the proposed changes.
 
 ## Phase 6 — Implement (Approval Required)
 
@@ -284,7 +280,7 @@ During review:
 - Reference concrete skill, rule, or harness instructions when possible.
 - Separate observed defects from inferred defects.
 - Do not output unnecessary full skill rewrites.
-- Stop after proposing changes.
+- Without approval, stop after saving and presenting the proposal; do not apply proposed changes.
 
 During implementation:
 - Report what actually changed.
@@ -307,5 +303,4 @@ Keep the process lightweight and stateless: no databases, persistent
 feedback logs, scoring systems, unnecessary subskills, or mandatory
 full-library audits.
 
-Never mutate global skills, rules, harness instructions, symlinks, or
-other persistent files without explicit approval of the proposed changes.
+Never modify effective global skills, rules, harness instructions/configuration, or their symlinks without explicit approval of the proposed changes. Saving a separate review proposal or memory reference does not grant that approval.

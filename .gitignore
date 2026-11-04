@@ -32,3 +32,7 @@ __pycache__/
 !memories/working/example-project/spec-queue.example.md
 !memories/working/example-project/requests-inbox.example.md
 !memories/working/example-project/release-calendar.example.md
+
+# Durable implementation review; other local documentation remains ignored.
+!docs/
+!docs/artifact-persistence-review.md

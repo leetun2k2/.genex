@@ -23,10 +23,16 @@ Create real knowledge files only when useful; examples are never evidence.
 See [storage conventions](skills/0-memory/references/storage.md) for the full
 logical tree and write procedure. Harness-native memory remains independent.
 
-The shared policy asks agents to evaluate durable knowledge at meaningful
-task completion and invoke [0-memory](skills/0-memory/SKILL.md) for narrow,
-evidence-based updates. This is instruction-driven automation: native skill
-selection varies, permissions may prevent writes, and abrupt termination
+The shared policy requires producers to save canonical deliverables and valuable
+reviews, while allowing ephemeral outputs to remain in chat. Producers save and
+verify files independently of orchestrators. At meaningful completion, use
+[0-memory](skills/0-memory/SKILL.md) when useful for durable knowledge and selective
+artifact references; full documents stay in their canonical location. Saving,
+approval, Git commits, and memory indexing are separate actions. Real memory is
+local-only and has no inherent backup or cross-machine synchronization.
+
+This is instruction-driven automation: native skill selection varies,
+permissions may prevent writes, and abrupt termination
 cannot guarantee a checkpoint. No mandatory hook or background process is
 installed. Confirm rule loading and skill discovery in each harness/version.
 

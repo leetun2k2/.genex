@@ -40,3 +40,9 @@ When updating a design, make the requested changes without unrelated restructuri
 Follow the user's artifact path or established repository conventions; preserve existing paths on updates. Identify the resulting document and outstanding decision or approval needs. Producing a design does not authorize implementation.
 
 Work independently from context supplied or available during invocation, without hidden session state. The caller or orchestrator owns workflow coordination, context persistence, skill selection, approval tracking, and handoff. Require no companion skill and do not invoke task planning automatically. The responsibility boundary limits the deliverable, not reasoning: inspect implementation details as deeply as needed to validate the architecture, while keeping the output a decision-oriented Solution Overview.
+
+## Saved deliverable
+
+Save the Technical Design — Solution Overview as Markdown before completion, following the shared artifact location precedence; use a suitable workspace documentation directory when no convention exists. Read and update the intended existing document on revisions. Verify the saved file and return its actual path with unresolved decisions; if saving fails, report the deliverable as unsaved and incomplete.
+
+Saving this deliverable belongs to this skill, even when invoked standalone. The caller's context persistence and handoff responsibilities do not replace it. A saved draft is not an approved design or authorization to implement.

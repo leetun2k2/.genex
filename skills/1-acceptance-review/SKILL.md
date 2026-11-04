@@ -210,6 +210,8 @@ If the implementation meets the agreed requirements and no material blockers rem
 
 ## Output
 
+Save the report as Markdown when needed for approval, handoff, audit, follow-up, or long-term reference; keep trivial or temporary assessments in chat. Follow the shared artifact location precedence, updating the intended existing report on revisions. When persistence is needed, verify the saved file and return its actual path; report failed writes as unsaved rather than completed persistence. Saving the report does not approve its recommendations.
+
 Produce a concise Markdown acceptance report.
 
 ### 1. Verdict

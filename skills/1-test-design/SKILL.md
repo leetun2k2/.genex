@@ -234,7 +234,7 @@ Do not claim comprehensive coverage without supporting evidence.
 
 - Follow existing repository documentation conventions when available.
 - Place the specification near the related feature or design artifacts.
-- Use Markdown as the canonical output.
+- Save the specification as Markdown before completion, following the shared artifact location precedence. Read and update the intended existing specification on revisions. Verify the file and return its actual saved path; disclose failed persistence as incomplete. Saving a draft does not imply approval.
 - Keep the document concise, readable, and executable by another agent.
 - Include enough detail to execute without rediscovering essential business logic.
 - Prefer concrete assertions over vague statements such as "works correctly".

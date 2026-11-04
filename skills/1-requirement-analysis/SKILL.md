@@ -27,6 +27,10 @@ When the assessed scope supports it, indicate whether the requirements are suffi
 
 ## Responsibility and independence
 
-Work independently from the context available during invocation. Do not own or persist grooming history or cross-session state. The calling agent or orchestrator owns context persistence, workflow coordination, unresolved-decision tracking, tool and companion-skill selection, and overall backlog readiness. Require no particular tool transport or other skill.
+Work independently from the context available during invocation. Do not own grooming history or cross-session workflow state; saving the findings themselves remains this skill's responsibility. The calling agent or orchestrator owns context persistence, workflow coordination, unresolved-decision tracking, tool and companion-skill selection, and overall backlog readiness. Require no particular tool transport or other skill.
 
 The deliverable is requirement evaluation. Do not automatically produce architecture, implementation plans, detailed technical designs, formal effort estimates, executable test cases, test execution, backlog prioritization, or final PO approval. These boundaries limit responsibility and output, not useful cross-domain reasoning.
+
+## Saved findings
+
+Save the Requirement Findings as Markdown when needed for approval, handoff, audit, follow-up, or long-term reference; keep trivial or temporary assessments in chat. Follow the shared artifact location precedence, updating the intended existing findings document on revisions. When persistence is needed, verify the saved file and return its actual path; report failed writes as unsaved rather than completed persistence. Saving the findings does not approve their recommendations.

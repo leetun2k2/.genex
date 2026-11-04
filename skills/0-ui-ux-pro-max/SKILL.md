@@ -361,6 +361,8 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "beauty spa wellness se
 
 ### Step 2b: Persist Design System (Master + Overrides Pattern)
 
+When the requested deliverable is a canonical design system, persist it before completion; exploratory recommendations may remain in chat. Respect explicit paths, existing artifacts, and project conventions before using the default layout below. Update the intended existing system, verify the saved files, and return their actual paths; disclose failed persistence.
+
 To save the design system for **hierarchical retrieval across sessions**, add `--persist`:
 
 ```bash

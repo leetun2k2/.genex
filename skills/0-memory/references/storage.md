@@ -93,6 +93,14 @@ Copy only a relevant template; do not create empty files for every topic. These 
 
 Checkpoints also support non-Git and multi-repository tasks: identify actual artifact/repository locations, omit unavailable Git metadata, and state verification limits. Save observations and authored technical artifacts, not hidden reasoning or transcripts. Keep specifications in their established repository/Confluence location when one exists and link them from memory.
 
+## Artifact storage and references
+
+Prefer the established repository/workspace or authoritative document location for complete artifacts. Use project-scoped `references.md` for selective pointers: canonical path/URI, purpose, and relevant decisions or review status. Project scope is established by its directory and repository mapping. Keep approval separate from `evidence_status`: verifying that a draft exists does not approve its content. Update existing entries and documents rather than generating version suffixes.
+
+If repository/workspace storage is unavailable, use a descriptive Markdown file in `knowledge/projects/<project-id>/` after resolving project identity. Preserve the full deliverable there, report its actual location and any unmet requested destination, and use the same write protocol. This fallback needs no new directory schema. Do not copy complete artifacts into memory when they already have a canonical home. Recovery checkpoints should link them.
+
+Actual memory is Git-ignored local data, without inherent backup, version history, or cross-machine synchronization. Saving prevents dependence on chat history, but does not protect against losing the local store. Existing authorized version control or backup arrangements remain separate; do not introduce automatic commits or synchronization.
+
 ## Concurrent writes
 
 All cooperating harnesses must follow this protocol for Markdown and YAML, including mapping/index edits. No database or locking service is needed.

@@ -282,6 +282,8 @@ Rules:
 - Do not include raw transcripts, tool logs, agent narration, or agreement scores.
 - The debate record is the only place for process metadata.
 
+Save the final review brief when useful for approval, handoff, audit, follow-up, or long-term reference; round result files are not a substitute for the brief. Follow the shared artifact location precedence and update the intended existing brief on revisions. Verify and return its actual saved path, or disclose failed persistence. A saved conclusion does not approve changes to source specs or code.
+
 ## Guardrails
 
 - Never edit code or specs during the debate.

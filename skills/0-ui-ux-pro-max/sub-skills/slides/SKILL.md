@@ -38,3 +38,7 @@ Strategic HTML presentation design with data visualization.
 1. Parse subcommand from `$ARGUMENTS` (first word)
 2. Load corresponding `references/{subcommand}.md`
 3. Execute with remaining arguments
+
+## Saved deliverable
+
+Save the requested presentation as a workspace HTML file before completion. Follow the shared artifact location precedence and update the intended existing artifact on revisions. Verify the saved files and return their actual paths; report failed persistence as incomplete. Saving a draft does not approve it. Exploratory advice may remain in chat.

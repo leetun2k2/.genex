@@ -40,3 +40,9 @@ A task is sufficiently designed when a competent coding agent can implement it c
 Produce a concise, actionable plan with enough task-local detail to support correct implementation. Reference the source design for architectural context and shared decisions; keep unresolved architectural issues visible separately from local questions. Follow the user's artifact path or established repository conventions, preserving existing paths when updating a plan. Do not generate executable code or implement tasks unless separately requested.
 
 Work independently and without hidden session state. The caller or orchestrator owns workflow coordination, context persistence, skill selection, approval tracking, and cross-skill handoff. Require no companion skill and do not invoke architectural design automatically. These responsibility boundaries constrain the deliverable, not technical reasoning across domains.
+
+## Saved deliverable
+
+Save the Implementation Plan as Markdown before completion, following the shared artifact location precedence; use a suitable workspace documentation directory when no convention exists. Read and update the intended existing document on revisions. Verify the saved file and return its actual path with unresolved decisions; if saving fails, report the deliverable as unsaved and incomplete.
+
+Saving this deliverable belongs to this skill, even when invoked standalone. The caller's context persistence and handoff responsibilities do not replace it. A saved draft is not an approved design or authorization to implement.

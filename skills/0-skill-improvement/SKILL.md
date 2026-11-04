@@ -1,19 +1,19 @@
 ---
 name: 0-skill-improvement
 description: >
-  Review user feedback after a skill or combination of skills
-  produces an unsatisfactory result. Diagnose root causes,
-  audit relevant global skills, and propose minimal,
-  evidence-based improvements. Never modify skills without
-  explicit user approval of the proposed changes.
+  Review feedback on individual or combined global skills, global
+  rules, harness instructions, and skill orchestration. Diagnose
+  root causes and propose minimal, evidence-based improvements.
+  Require explicit user approval of proposed changes before any
+  persistent mutation.
 ---
 
 # Skill Improvement
 
 ## Purpose
 
-Continuously improve the quality of reusable skills using
-real execution feedback.
+Improve reusable global skills, global rules, and their harness
+integration using real execution feedback.
 
 Optimize for:
 - Correctness and reliability
@@ -29,7 +29,8 @@ instance at the expense of general applicability.
 
 Use when the user:
 - Gives negative feedback after using skills.
-- Asks to review or improve existing skills.
+- Asks to review or improve existing global skills or rules.
+- Reports failures involving harness instructions or orchestration.
 - Reports inconsistent output from a skill combination.
 - Wants to prevent a recurring skill-related failure.
 
@@ -73,72 +74,65 @@ Separate:
 
 Do not treat every preference as a global requirement.
 
-## Phase 2 — Trace Relevant Skills
+## Phase 2 — Trace Relevant Components
 
-Discover the actual global skill locations and conventions.
+Discover actual locations and source-of-truth files from available
+configuration, references, and harness context. Resolve symlinks and
+generated copies to their canonical sources; do not assume fixed paths.
 
-Identify:
+Inspect only components relevant to the observed issue:
 
-- Skills directly involved in the task.
-- Dependencies and referenced rules.
-- Related skills that may influence the behavior.
-- Conflicting or duplicated instructions.
-- Input/output contracts and handoff assumptions.
+- Individual or combined skills, dependencies, and referenced material.
+- Shared global rules, especially `rules/global.md` when present.
+- Harness instructions such as `AGENTS.md`, `CLAUDE.md`, and equivalent
+  native instruction locations for the harness involved.
+- Relevant repository instructions and their scope.
+- Reference loading, input/output contracts, sequencing, handoffs,
+  and lifecycle control.
 
-Inspect relevant skill content and references.
+Trace which instructions were actually loaded and their effective scope
+and precedence using available configuration or execution evidence.
+File existence alone does not establish loading. If loading cannot be
+verified, record the uncertainty. Respect higher-priority harness
+instructions and existing instruction precedence.
 
-Do not audit the entire global skill library by default.
-
-Expand the investigation only when the evidence indicates
-a cross-skill or shared-rule problem.
+Do not scan the entire system or audit the full library by default.
+Expand discovery only when evidence points to additional components.
 
 ## Phase 3 — Root Cause Analysis
 
-Classify the failure:
+Distinguish the following causes; multiple may contribute:
 
-A. Skill instruction defect
-   - Ambiguous or incomplete instructions
-   - Incorrect assumptions
-   - Overly restrictive rules
-   - Missing decision criteria
+- Skill defect: ambiguous, incomplete, incorrect, or overly restrictive
+  domain instructions or missing decision criteria.
+- Global rule defect: a shared behavioral principle is flawed or missing.
+- Conflict between a skill and a global rule.
+- Conflict between global rules or harness instructions.
+- Skill/orchestrator integration defect: incompatible skills, incorrect
+  sequencing, unclear ownership, or broken handoffs and lifecycle control.
+- Incorrect rule loading or instruction precedence: required instructions
+  are absent, incorrectly scoped, or applied at the wrong priority.
+- Execution-only defect: valid, loaded instructions were not followed,
+  including tool misuse or execution-specific reasoning failure.
+- Missing task context: unavailable requirements, evidence, or expectations.
+- Tool/environment issue.
+- No confirmed defect.
 
-B. Cross-skill integration defect
-   - Conflicting instructions
-   - Incorrect sequencing
-   - Ambiguous ownership
-   - Broken input/output handoff
-
-C. Execution defect
-   - Agent failed to follow valid instructions
-   - Incorrect tool usage
-   - Incomplete context exploration
-   - Execution-specific reasoning failure
-
-D. Context or input defect
-   - Missing requirements
-   - Inadequate evidence
-   - Conflicting expectations
-
-E. Environment or tooling limitation
-
-F. No confirmed defect
-
-Distinguish confirmed causes from hypotheses.
-
-Do not modify skill instructions to compensate for an
-unrelated defect unless the change has independent value.
+Distinguish confirmed causes from hypotheses. Do not change instructions
+to compensate for an unrelated defect unless the change has independent
+value.
 
 ## Phase 4 — Evaluate Improvements
 
-For each confirmed or plausible skill-related cause:
+For each confirmed or plausible cause:
 
 1. Identify the smallest effective change.
 2. Determine the correct ownership layer:
-   - Global rule
-   - Individual skill
-   - Skill combination / orchestration
-   - Task-specific instructions
-   - Tool configuration
+   - Global rules: cross-cutting behavioral principles.
+   - Skills: domain-specific procedures.
+   - Orchestration: sequencing, handoffs, and lifecycle control.
+   - Repository instructions: repository-specific conventions.
+   - Task context or tool configuration, where appropriate.
 3. Evaluate positive and negative impact.
 4. Check compatibility with existing workflows.
 5. Check whether the change creates duplication.
@@ -160,7 +154,25 @@ Avoid:
 - Prescribing tools when adaptive selection is sufficient
 - Expanding scope without evidence
 
-Preserve existing skill behavior unless a change is justified.
+Preserve existing behavior unless a change is justified. Keep reusable
+skills separate from triggered workflows. Do not turn one-off feedback
+into a global rule or duplicate instructions across layers unless needed.
+
+### Global Rule Audit
+
+When shared rules or harness instructions contribute to the issue:
+
+- Identify the relevant instructions and evidence of their contribution.
+- Check for ambiguity, duplication, contradictions, gaps, outdated guidance,
+  excessive restrictions, or guidance too generic to help decisions.
+- Verify effective loading and precedence as described in Phase 2.
+- Consider adding, updating, relaxing, moving, or removing a rule;
+  determine whether another ownership layer is more appropriate.
+- Evaluate effects on unrelated skills and workflows.
+- Prefer concise, generalizable principles over special-case constraints.
+
+Never weaken essential safety or correctness invariants merely to satisfy
+feedback.
 
 ## Phase 5 — Improvement Proposal
 
@@ -177,25 +189,34 @@ Specific skills, rules, or orchestration boundaries.
 
 ### Proposed Changes
 For each change:
-- Target file or component
-- Current problem
-- Proposed adjustment
-- Why it addresses the problem
-- Potential regression risk
+- Target component and canonical source-of-truth file
+- Current problematic instruction, if identifiable
+- Proposed change
+- Reasoning and supporting evidence
+- Expected behavior improvement
+- Potential impacts and regression risks
+- Confidence and remaining uncertainty when evidence is incomplete
 
 ### Recommendation
 Choose one:
-- IMPROVE
-- NO CHANGE
-- NEED MORE EVIDENCE
+- UPDATE_SKILL
+- UPDATE_GLOBAL_RULE
+- UPDATE_ORCHESTRATION
+- UPDATE_MULTIPLE
+- NO_CHANGE
+- NEED_MORE_EVIDENCE
+
+Identify the actual ownership layer even when no label names it directly;
+use UPDATE_MULTIPLE for changes spanning layers.
 
 ### Approval
 Explicitly request approval before editing.
 
 If changes are proposed, stop here.
 
-Do not edit files, create symlinks, modify global rules,
-or perform other persistent mutations during review.
+Do not mutate any global skill, global rule, harness instruction,
+symlink, or other persistent file during review. This gate applies to
+supporting artifacts as well as the proposed targets.
 
 ## Phase 6 — Implement (Approval Required)
 
@@ -206,20 +227,24 @@ Apply only approved changes.
 If approval is partial, apply only the approved subset.
 
 If the user requests changes to the proposal, revise the
-proposal before implementation.
+proposal before implementation. If the user rejects it, make no changes.
 
 When implementing:
 
-1. Inspect the latest target file state.
+1. Inspect the latest target file state and confirm its canonical source.
+   Edit source-of-truth files, not generated or symlinked harness copies.
 2. Preserve existing conventions and structure.
 3. Apply minimal, focused modifications.
 4. Avoid unrelated refactoring.
 5. Keep skills reusable and stateless.
-6. Maintain compatibility with supported harnesses.
+6. Maintain compatibility with Claude Code, Codex, and other supported
+   harnesses without hardcoding tool transport.
 7. Preserve explicit separation between reusable
    capabilities and triggered workflows.
 
-Do not silently expand implementation scope.
+Do not silently expand implementation scope. If implementation uncovers
+a material new change, propose it and obtain additional approval before
+applying it.
 
 ## Phase 7 — Verify Improvement
 
@@ -227,11 +252,12 @@ After modifications:
 
 - Review the actual diff.
 - Check syntax and instruction consistency.
-- Check relevant dependencies and references.
+- Check relevant skill/rule conflicts, dependencies, reference resolution,
+  and effective loading paths, including affected harness integrations.
 - Verify the original feedback scenario against the new
   instructions where feasible.
-- Consider at least one normal scenario that should
-  continue working.
+- Check a representative normal scenario that should continue working;
+  when global rules change, include representative unaffected workflows.
 - Check for new conflicts or excessive constraints.
 
 Use lightweight verification appropriate to the change.
@@ -239,10 +265,11 @@ Use lightweight verification appropriate to the change.
 Do not make unsafe external calls merely to test a skill.
 
 If the original scenario cannot be reproduced, report
-verification limitations.
+verification limitations. Distinguish static instruction review from
+actual behavioral evidence; a hypothetical walkthrough is not a real run.
 
 Report:
-- Files changed
+- Files changed and concise diff summary
 - Behavioral improvements intended
 - Verification performed
 - Remaining risks
@@ -254,7 +281,7 @@ Never claim an improvement is proven without evidence.
 During review:
 - Be concise and specific.
 - Prioritize actionable findings.
-- Reference concrete skill instructions when possible.
+- Reference concrete skill, rule, or harness instructions when possible.
 - Separate observed defects from inferred defects.
 - Do not output unnecessary full skill rewrites.
 - Stop after proposing changes.
@@ -268,7 +295,7 @@ During implementation:
 
 Feedback is evidence, not automatically a specification.
 
-A successful improvement must increase overall skill quality,
+A successful improvement must increase overall instruction quality,
 not simply make the latest example pass.
 
 Do not make the agent less intelligent by replacing judgment
@@ -276,4 +303,9 @@ with unnecessary procedural instructions.
 
 Prefer no change over a weak or speculative improvement.
 
-Never modify global skills without explicit approval.
+Keep the process lightweight and stateless: no databases, persistent
+feedback logs, scoring systems, unnecessary subskills, or mandatory
+full-library audits.
+
+Never mutate global skills, rules, harness instructions, symlinks, or
+other persistent files without explicit approval of the proposed changes.

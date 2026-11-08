@@ -1,4 +1,3 @@
-
 ---
 name: 1-code-review
 description: Review code changes for material correctness defects, breaking changes, regressions, and engineering risks. Prefer native harness code review capabilities. Focus on actionable, high-impact findings without overengineering.

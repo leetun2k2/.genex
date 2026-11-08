@@ -8,8 +8,11 @@ rules, skills, and task workflows remain separate.
 The existing local installation links `~/.genex`, `~/.claude`, `~/.codex`,
 and `~/.gemini` to this directory. Preserve that setup when installing
 elsewhere, or configure native instruction/skill discovery to point here.
-Claude/Codex share `skills/`; Agy reaches the same skill through the
-canonical instruction reference. No skill implementation is copied.
+Claude/Codex share `skills/`; Antigravity CLI also reaches it through
+`~/.gemini/skills` (its shared CLI discovery path). These user paths resolve
+to canonical source. The obsolete repo-local `.agents/skills/0-harness` bundle has been removed.
+Use canonical `skills/1-harness/SKILL.md` and the selected execution skill;
+do not recreate the old bundle. See [harness discovery evidence](skills/1-harness/references/discovery.md).
 If native discovery is unavailable, explicitly ask the harness to read
 `GENEX.md` and `skills/0-memory/SKILL.md` using absolute paths.
 

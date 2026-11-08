@@ -5,7 +5,7 @@ description: Coordinate implementation review, functional test design and execut
 
 # Development review
 
-Own the **review** phase of `plan → implement → review`. Evaluate implemented work against agreed requirements using code and runtime evidence. Planning belongs to `2-development-plan`; implementation remains a flexible native agent/harness activity with no implementation skill. Do not modify application code during this phase.
+Own the **review** phase of `plan → implement → review`. Evaluate implemented work against agreed requirements using code and runtime evidence. Planning belongs to `2-development-plan`; implementation belongs to `2-development-implement`, which coordinates delegated coding and integration checkpoints. Do not modify application code during this phase.
 
 ## Establish the review basis
 
@@ -38,12 +38,12 @@ Ask only when affected work needs a material product/architecture decision, acce
 
 Route findings by ownership:
 
-- **Implementation defect:** record expected versus actual behavior, evidence, impact and minimum remediation; hand back to native implementation outside this skill.
+- **Implementation defect:** record expected versus actual behavior, evidence, impact and minimum remediation; hand back to `2-development-implement` outside this skill, with enough evidence to scope the correction and affected checks.
 - **Stale/incorrect scenario:** reconcile through `1-test-design` against agreed requirements; preserve the reason for changes.
 - **Architectural flaw or product ambiguity:** identify the affected planning artifact/decision and route to the relevant planning skill or human owner. Do not redesign silently during review.
 - **Environment/access issue:** record the missing prerequisite and perform only authorized investigation or preparation.
 
-If the surrounding request authorizes fixes, the caller may leave review, implement the scoped correction using native coding capability, and re-enter review without redundant permission. This is a phase transition, not permission for test execution or acceptance skills to edit code. If only review was requested, stop with findings and remediation handoff.
+If the surrounding request authorizes fixes, the caller may leave review, use `2-development-implement` for the scoped correction, and re-enter review without redundant permission. This is a phase transition, not permission for test execution or acceptance skills to edit code. If only review was requested, stop with findings and remediation handoff.
 
 After fixes, inspect the new diff/revision and rerun only affected checks/scenarios plus justified regression coverage. Invalidate affected acceptance conclusions and evidence; preserve unrelated valid results. Require a concrete hypothesis or new evidence for retries. Stop cycles that reproduce a failure without learning and report the unresolved blocker.
 

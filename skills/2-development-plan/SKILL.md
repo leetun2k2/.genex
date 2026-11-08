@@ -5,13 +5,13 @@ description: Coordinate requirement analysis, technical design, task planning an
 
 # Development plan
 
-Own the **plan** phase of `plan → implement → review`. Coordinate existing domain skills without duplicating their reasoning. Implementation is a flexible native agent/harness activity, with no implementation skill or prescribed coding workflow. The review phase belongs to `2-development-review`.
+Own the **plan** phase of `plan → implement → review`. Coordinate existing domain skills without duplicating their reasoning. Implementation belongs to `2-development-implement`, which coordinates a task graph, harness selection, subagent execution and integration checkpoints while leaving coding choices to the agents. The review phase belongs to `2-development-review`.
 
 ## Establish the planning scope
 
 Read the work item, relevant repository instructions, current code and canonical artifacts. Reuse valid findings, designs and plans; investigate missing context before asking. Separate requirements, observed behavior, accepted decisions, proposals and assumptions.
 
-Plan-only requests authorize planning, not code changes. If the surrounding user request also authorizes implementation, preserve that authorization in the handoff; completing this skill still ends the planning responsibility. The caller may continue with native implementation under that request without asking for redundant approval. A saved plan alone grants no implementation permission.
+Plan-only requests authorize planning, not code changes. If the surrounding user request also authorizes implementation, preserve that authorization in the handoff; completing this skill still ends the planning responsibility. The caller may continue with `2-development-implement` under that request without asking for redundant approval. A saved plan alone grants no implementation permission.
 
 ## Coordinate the work
 
@@ -50,4 +50,4 @@ Finish by reporting whether planning is ready, conditional or blocked, with arti
 
 ## Phase boundary
 
-Do not modify application code, run functional tests, commit, deploy or automatically invoke the review phase. Hand implementation to the caller's native coding capability. The implementer chooses its approach under repository conventions and user authorization, and should carry forward actual changes, revision, checks and unresolved issues for review. No new unit tests are required by this skill.
+Do not modify application code, run functional tests, commit, deploy or automatically invoke the review phase. Hand implementation to `2-development-implement`; it turns the planning handoff into an executable task graph and delegates implementation through the selected harnesses. The implementer chooses its approach under repository conventions and user authorization, and should carry forward actual changes, revision, checks and unresolved issues for review. No new unit tests are required by this skill.

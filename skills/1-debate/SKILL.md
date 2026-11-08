@@ -16,7 +16,7 @@ The moderator invokes the harnesses, keeps a lossless decision ledger, and write
 
 ## Harness dependency
 
-Before invoking any CLI, read [0-harness](../0-harness). It is the source of truth for current `codex`, `claude`, and `agy` non-interactive commands, permission flags, output capture, and failure handling.
+Use [1-harness](../1-harness/SKILL.md) to select harnesses. Before invoking a selected CLI, load its execution skill: [0-codex](../0-codex/SKILL.md), [0-claude](../0-claude/SKILL.md) or [0-antigravity](../0-antigravity/SKILL.md). Reuse valid routing metadata across rounds; do not rerun candidate scoring/probes for unchanged assignments. The moderator owns run admission/reservations, including shared pools. Each execution skill owns its commands, permissions, output capture and diagnostics; reviewers do not reroute or create nested workers.
 
 This skill defines the debate protocol only. Apply these stricter rules on top of the shared harness guidance:
 
@@ -65,7 +65,7 @@ The baseline is an extractive index, not a moderator interpretation or a substit
 
 ## Run one turn
 
-Write the debate prompt to a round-specific file. Invoke each selected CLI with the read-only pattern from `0-harness`.
+Write the debate prompt to a round-specific file. Invoke each selected CLI with the read-only pattern from its selected execution skill.
 
 Use this artifact naming convention:
 
